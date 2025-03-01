@@ -1,0 +1,73 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Введите размер: ");
+        double minsize = scan.nextDouble();
+        System.out.print("Введите число обращений: ");
+        double mincount = scan.nextInt();
+        int n;
+        int schet = 0;
+        int schet2 = 0;
+        System.out.print("Введите размерность массива = ");
+        n = scan.nextInt();
+        String[] masSize = new String[n];
+        String[] masCount = new String[n];
+        scan.nextLine();
+        File[] mas = new File[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Введите имя файла: ");
+            String Name = scan.nextLine();
+            System.out.print("Введите размер файла (в байтах): ");
+            double Size = scan.nextDouble();
+            scan.nextLine();
+            System.out.print("Введите дату (дд.мм.гггг): ");
+            String Date = scan.nextLine();
+            System.out.print("Введите количество обращений: ");
+            int count = scan.nextInt();
+            scan.nextLine();
+            mas[i] = new File(Name, Size, Date, count);
+            if (minsize < Size){
+                if (schet == 0){
+                    masSize[0] = Name;
+                }
+                masSize[schet] = Name;
+                schet++;
+            }
+            if (mincount < count){
+                if (schet2 == 0){
+                    masCount[0] = Name;
+                }
+                masCount[schet2] = Name;
+                schet2++;
+            }
+        }
+        System.out.println("Имена файлов, размер которых превышает заданный: ");
+        for (int i = 0; i < masSize.length; i++){
+            if(masSize[i] != null){
+                System.out.print(masSize[i] + " ");
+            }
+        }
+        System.out.println(" ");
+        System.out.println("Имена файлов, число обращений к которым превышает заданное: ");
+        for (int i = 0; i < masCount.length; i++){
+            if (masCount[i] != null){
+                System.out.print(masCount[i] + " ");
+            }
+        }
+    }
+}
+class File {
+    String Name;
+    Double Size;
+    String Date;
+    int count;
+
+    public File(String Name, Double Size, String Date, int count) {
+        this.Name = Name;
+        this.Size = Size;
+        this.Date = Date;
+        this.count = count;
+    }
+
+}
