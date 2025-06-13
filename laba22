@@ -1,0 +1,66 @@
+
+public class Main {
+    public static void main(String[] args) {
+        Zar220 Zar220W = new Zar220W();
+        Power g1 = new Power(Zar220W);
+        g1.work();
+        RosAdapter ros380 = new RosAdapter(new Ros380W());
+        Power g2 = new Power(ros380);
+        g2.work();
+    }
+}
+interface Zar220 {
+    public void zar();
+    public void power220();
+}
+
+class Zar220W implements Zar220{
+    @Override
+    public void zar(){
+        System.out.print("Зарядка 220 вольт - ");
+    }
+    public void power220() {
+        System.out.println("Напряжение 220 Вольт");
+    }
+}
+
+interface Power380{
+    public void zar();
+    public void power380();
+}
+class Ros380W implements Power380{
+    @Override
+    public void zar(){
+        System.out.print("Зарядка 220 вольт - ");
+    }
+    public void power380() {
+        System.out.print("Напряжение 380 Вольт");
+    }
+}
+
+class RosAdapter implements Zar220{
+    Power380 p380;
+    public RosAdapter(Power380 p380){
+        this.p380 = p380;
+    }
+
+    @Override
+    public void zar() {
+        p380.zar();
+    }
+
+    public void power220(){
+        p380.power380();
+    }
+}
+
+class Power{
+    private Zar220 zar;
+    public Power(Zar220 zar){
+        this.zar = zar;
+    }
+    public void work(){
+        zar.zar();
+        zar.power220();
+    }
+}
