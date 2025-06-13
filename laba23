@@ -1,0 +1,70 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Main {
+    public static void main(String[] args) {
+        User Sanya = new User("Sanya");
+        User Nekit = new User("Nekit");
+        Group group1 = new Group("Dota 2");
+        Group group2 = new Group("CS 2");
+        Group group3 = new Group("Новости Пенза");
+        Group group4 = new Group("ПКИПТ (IT-Колледж)");
+        Group group5 = new Group("Deep Rock Galactic");
+        Group group6 = new Group("Marmok");
+        Group group7 = new Group("Fortnite");
+        group1.addObserver(Sanya);
+        group2.addObserver(Sanya);
+        group3.addObserver(Sanya);
+        group4.addObserver(Nekit);
+        group5.addObserver(Nekit);
+        group6.addObserver(Nekit);
+        group7.addObserver(Nekit);
+        group1.notifyObserver("Новый персонаж");
+        group2.notifyObserver("Новый чит");
+        group3.notifyObserver("Реклама");
+        group4.notifyObserver("Что-то про колледж");
+        group5.notifyObserver("Новый глифид");
+        group6.notifyObserver("Новое видео");
+        group7.notifyObserver("Коллаборация с дональдом трампом");
+    }
+}
+
+interface Observer {
+    public void update(String groupName, String msg);
+}
+
+interface Notifier {
+    public void addObserver(Observer obs);
+    public void removeObserver(Observer obs);
+    public void notifyObserver(String notification);
+}
+
+class Group implements Notifier{
+    private String groupName;
+    private List<Observer> observers = new ArrayList<>();
+    Group(String groupName){
+        this.groupName = groupName;
+    }
+
+    public void addObserver(Observer observer){
+        observers.add(observer);
+    }
+    public void removeObserver(Observer observer){
+        observers.remove(observer);
+    }
+    public void notifyObserver(String notification){
+        for(int i = 0; i < observers.size(); i++){
+            Observer observer = (Observer) observers.get(i);
+            observer.update(groupName, notification);
+        }
+    }
+}
+
+class User implements Observer{
+    private String username;
+    User(String username){
+        this.username = username;
+    }
+    public void update(String groupName, String notification){
+        System.out.printf("Группа %s уведомляет  %s: \"%s\"\n",groupName,username,notification);
+    }
+}
