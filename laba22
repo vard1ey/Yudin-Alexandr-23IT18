@@ -1,4 +1,3 @@
-
 public class Main {
     public static void main(String[] args) {
         Zar220 Zar220W = new Zar220W();
