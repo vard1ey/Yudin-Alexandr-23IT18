@@ -1,0 +1,83 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Reader[] readers = new Reader[5];
+        readers[0] = new Reader("Иванов Александр Николаевич","63664","Экономический","23.03.2003","89867523560");
+        readers[1] = new Reader("Пономарёв Андрей Сергеевич","57842","Юридический","03.12.2010","89451354675");
+        readers[2] = new Reader("Александр Родионович Бородач","58768","Биологический","16.07.2007","89238793412");
+        readers[3] = new Reader("Шматко Александр Сергеевич","58098","Исторический","10.07.2001","89783040689");
+        readers[4] = new Reader("Поляков Сергей Анатольевич","58111","Физический","29.02.204","89373141804");
+        System.out.println("Введите сколько книг взял читатель: ");
+        int books = scan.nextInt();
+        readers[1].takeBook(books);
+        String[] bookList = new String[books];
+        if (books > 0){
+            for(int i = 0; i < bookList.length; i++){
+                System.out.println("Название книги: ");
+                bookList[i] = scan.next();
+            }
+            readers[1].takeBook(bookList);
+        }
+        System.out.println("Введите кол-во книг, которые вернул читатель: ");
+        books = scan.nextInt();
+        readers[1].returnBook(books);
+        bookList = new String[books];
+        if(books > 0){
+            for(int i = 0; i < bookList.length; i++){
+                System.out.println("Название книги: ");
+                bookList[i] = scan.next();
+            }
+            readers[1].returnBook(bookList);
+        }
+    }
+}
+
+class Reader {
+    String fullName;
+    String ticketNumber;
+    String faculty;
+    String birthDate;
+    String phoneNumber;
+    public Reader(String fullName, String ticketNumber,String faculty,String birthDate,String phoneNumber){
+        this.fullName = fullName;
+        this.ticketNumber = ticketNumber;
+        this.faculty = faculty;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
+    }
+    public void takeBook(int books){
+        if (books >= 10 && books <= 19 || books % 10 >= 5) {
+            System.out.printf("%s взял %d книг\n", fullName, books);
+        }
+        else if(books % 10 == 1){
+            System.out.printf("%s взял %d книгу\n", fullName, books);
+        }
+        else if (books % 10 >= 2 && books % 10 <= 4 ) {
+            System.out.printf("%s взял %d книги\n", fullName, books);
+        }
+        else if (books == 0) {
+            System.out.printf("%s не брал книги\n", fullName);
+        }
+    }
+    public void takeBook(String... booklist){
+        System.out.printf("%s взял книги: "+ String.join(", " , booklist) + "\n", fullName);
+    }
+    public void returnBook(int books){
+        if (books >= 10 && books <= 19 || books % 10 >= 5) {
+            System.out.printf("%s вернул %d книг\n", fullName, books);
+        }
+        else if(books % 10 == 1){
+            System.out.printf("%s вернул %d книгу\n", fullName, books);
+        }
+        else if (books % 10 >= 2 && books % 10 <= 4 ) {
+            System.out.printf("%s вернул %d книги\n", fullName, books);
+        }
+        else if(books == 0){
+            System.out.printf("%s не возвращал книги\n", fullName);
+        }
+    }
+    public void returnBook(String... booklist){
+        System.out.printf("%s вернул книги: \n"+ String.join(", " ,booklist) + "\n", fullName);
+    }
+}
