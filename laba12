@@ -1,0 +1,125 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Введите ФИО первого студента: ");
+        String FullName = scan.nextLine();
+        System.out.print("Введите возраст первого студента: ");
+        int Age = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Введите должность первого студента: ");
+        String Post = scan.nextLine();
+        System.out.print("Введите логин первого студента: ");
+        String Login = scan.nextLine();
+        System.out.print("Введите пароль первого студента: ");
+        String Password = scan.nextLine();
+        System.out.println();
+        Student student1 = new Student(FullName,Age,Post,Login,Password);
+
+        System.out.print("Введите ФИО второго студента: ");
+        String FullName1 = scan.nextLine();
+        System.out.print("Введите возраст второго студента: ");
+        int Age1 = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Введите должность второго студента: ");
+        String Post1 = scan.nextLine();
+        System.out.print("Введите логин второго студента: ");
+        String Login1 = scan.nextLine();
+        System.out.print("Введите пароль второго студента: ");
+        String Password1 = scan.nextLine();
+        System.out.println();
+        Student student2 = new Student(FullName1,Age1,Post1,Login1,Password1);
+
+        System.out.print("Введите ФИО первого преподавателя: ");
+        String FullName2 = scan.nextLine();
+        System.out.print("Введите возраст первого преподавателя: ");
+        int Age2 = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Введите должность первого преподавателя: ");
+        String Post2 = scan.nextLine();
+        System.out.print("Введите логин первого преподавателя: ");
+        String Login2 = scan.nextLine();
+        System.out.print("Введите пароль первого преподавателя: ");
+        String Password2 = scan.nextLine();
+        System.out.println();
+        Teacher teacher1 = new Teacher(FullName2,Age2,Post2,Login2,Password2);
+
+        System.out.print("Введите ФИО второго преподавателя: ");
+        String FullName3 = scan.nextLine();
+        System.out.print("Введите возраст второго преподавателя: ");
+        int Age3 = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Введите должность второго преподавателя: ");
+        String Post3 = scan.nextLine();
+        System.out.print("Введите логин второго преподавателя: ");
+        String Login3 = scan.nextLine();
+        System.out.print("Введите пароль второго преподавателя: ");
+        String Password3 = scan.nextLine();
+        System.out.println();
+        Teacher teacher2 = new Teacher(FullName3,Age3,Post3,Login3,Password3);
+
+        student1.Print();
+        student2.Print();
+        teacher1.Print();
+        teacher2.Print();
+    }
+}
+interface User{
+    void setLogin(String login);
+    String getLogin();
+    void setPassword(String password);
+    String getPassword();
+}
+abstract class People implements User{
+    String Login;
+    String Password;
+    String FullName;
+    int Age;
+    String Post;
+    People(String FullName, int Age, String Post){
+        this.FullName = FullName;
+        this.Age = Age;
+        this.Post = Post;
+    }
+    public void setLogin(String Login){
+        this.Login = Login;
+    }
+    public String getLogin(){
+        return Login;
+    }
+    public void setPassword(String Password){
+        this.Password = Password;
+    }
+    public String getPassword(){
+        return Password;
+    }
+    public abstract void Print();
+}
+class Teacher extends People{
+    Teacher(String FullName, int Age, String Post, String login2, String password2){
+        super(FullName,Age, Post);
+    }
+    public void Print(){
+        System.out.println("Преподаватель:");
+        System.out.println("ФИО: " + FullName);
+        System.out.println("Возраст: " + Age);
+        System.out.println("Должность: " + Post);
+        System.out.println("Логин: " + Login);
+        System.out.println("Пароль: " + Password);
+        System.out.println();
+    }
+}
+class Student extends People{
+    Student(String FullName, int Age, String Post, String Login, String Password){
+        super(FullName,Age,Post);
+    }
+    public void Print(){
+        System.out.println("Cтудент:");
+        System.out.println("ФИО: " + FullName);
+        System.out.println("Возраст: " + Age);
+        System.out.println("Должность: " + Post);
+        System.out.println("Логин: " + Login);
+        System.out.println("Пароль: " + Password);
+        System.out.println();
+    }
+}
