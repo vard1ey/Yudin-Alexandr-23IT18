@@ -1,0 +1,93 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Student[] mas = new Student[3];
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Введите ФИО студента: ");
+            String FullName = scan.nextLine();
+            System.out.print("Введите год поступления: ");
+            int Date = scan.nextInt();
+            scan.nextLine();
+            System.out.print("Введите номер телефона: ");
+            String Phone = scan.nextLine();
+            System.out.print("Введите факультет: ");
+            String Faculty = scan.nextLine();
+            System.out.print("Введите курс: ");
+            int Course = scan.nextInt();
+            scan.nextLine();
+            mas[i] = new Student(FullName, Date, Phone, Course, Faculty);
+        }
+        System.out.print("ФИО студентов");
+        System.out.print(" ");
+        for (int i = 0; i < 3; i++){
+            System.out.print(mas[i].getFullName() + " ");
+        }
+
+        System.out.println(' ');
+
+        System.out.print("Введите факультет, студентов которого нужно найти: ");
+        String FactProv = scan.nextLine();
+        for (int i = 0; i < 3; i++) {
+            if (mas[i].getFaculty().equals(FactProv)) {
+                System.out.println(mas[i].getFullName());
+            }
+        }
+
+        System.out.print("Введите год, студентов поступивших после которого нужно найти: ");
+        int DateProv = scan.nextInt();
+        for (int i = 0; i < 3; i++){
+            if (mas[i].getDate() > DateProv){
+                System.out.println(mas[i].getFullName());
+            }
+        }
+    }
+}
+class Person{
+    public String FullName;
+    public String Phone;
+    private int age;
+
+    public Person(String FullName, String Address){
+        this.FullName = FullName;
+        this.Phone = Phone;
+        this.age = age;
+    }
+    public String getFullName() {
+        return FullName;
+    }
+    public void setFullName(String FullName) {
+        this.FullName = FullName;
+    }
+    public String getPhone() {
+        return Phone;
+    }
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
+    }
+}
+class Student extends Person{
+    public String Faculty;
+    public int Course;
+    private int Date;
+
+    public Student(String FullName, int Date, String Phone, int Course, String Faculty) {
+        super(FullName, Phone);
+        this.Faculty = Faculty;
+        this.Course = Course;
+        this.Date = Date;
+    }
+
+    public void setDate(int Date){
+        this.Date = Date;
+    }
+    public void setCourse(int Course) {
+        this.Course = Course;
+    }
+    public String getFaculty() {
+        return Faculty;
+    }
+    public int getDate() {
+        return Date;
+    }
+}
