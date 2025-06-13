@@ -1,0 +1,84 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Person person = new Person();
+        System.out.print("Введите имя: ");
+        person.Name = scan.nextLine();
+        System.out.print("Введите фамилию: ");
+        person.Surname = scan.nextLine();
+        System.out.print("Введите год рождения: ");
+        person.Date = scan.nextInt();
+
+        scan.nextLine();
+
+        Car car = new Car();
+        System.out.print("Введите марку: ");
+        car.Brand = scan.nextLine();
+        System.out.print("Введите год выпуска: ");
+        car.DateCar = scan.nextInt();
+        System.out.print("Введите объём двигателя: ");
+        car.Volume = scan.nextDouble();
+
+        scan.nextLine();
+
+        Book book = new Book();
+        System.out.print("Введите название книги: ");
+        book.BookName = scan.nextLine();
+        System.out.print("Введите автора: ");
+        book.Author = scan.nextLine();
+        System.out.print("Введите год выпуска: ");
+        book.DateBook = scan.nextInt();
+
+        Book.Read(person, car, book);
+    }
+}
+class Person{
+    String Name;
+    String Surname;
+    int Date;
+
+    public Person() {
+        this.Name = Name;
+        this.Surname = Surname;
+        this.Date = Date;
+    }
+    static void Print(String Name, String Surname, int Date){
+        System.out.printf("Имя: %s, Фамилия: %s, Год рождения: %s ", Name, Surname, Date);
+    }
+}
+
+class Car{
+    String Brand;
+    int DateCar;
+    Double Volume;
+
+    public Car(){
+        this.Brand = Brand;
+        this.DateCar = DateCar;
+        this.Volume = Volume;
+    }
+    static void Print(String Brand, int DateCar, String Volume){
+        System.out.printf("Марка: %s, Год выпуска: %s, Объём двигателя: %s ", Brand, DateCar, Volume);
+    }
+}
+
+class Book {
+    String BookName;
+    String Author;
+    int DateBook;
+
+    public Book() {
+        this.BookName = BookName;
+        this.Author = Author;
+        this.DateBook = DateBook;
+    }
+
+    static void Print(String BookName, String Author, int DateBook) {
+        System.out.printf("Названике книги: %s, Автор: %s, Год выпуска: %s ", BookName, Author, DateBook);
+    }
+
+    public static void Read(Person person, Car car, Book book) {
+        System.out.printf("%s читает книгу %s про машину %s", person.Name, book.BookName, car.Brand);
+    }
+}
