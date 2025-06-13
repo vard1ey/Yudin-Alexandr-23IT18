@@ -1,0 +1,60 @@
+public class Main {
+    public static void main(String[] args) {
+        Logistic roadLogistic = new RoadLogistic();
+        roadLogistic.Delivery();
+
+        Logistic seaLogistic = new SeaLogistic();
+        seaLogistic.Delivery();
+
+        Logistic airLogistic = new AirLogistic();
+        airLogistic.Delivery();
+    }
+}
+abstract class Transport {
+    public abstract void deliver();
+}
+
+abstract class Logistic {
+    public abstract Transport createTransport();
+    public void Delivery() {
+        Transport transport = createTransport();
+        System.out.print("Доставка: ");
+        transport.deliver();
+    }
+}
+
+class Truck extends Transport {
+    public void deliver() {
+        System.out.println("На грузовике");
+    }
+}
+
+class Ship extends Transport {
+    public void deliver() {
+        System.out.println("На судне");
+    }
+}
+
+class Plane extends Transport {
+    public void deliver() {
+        System.out.println("На самолете");
+    }
+}
+
+ class RoadLogistic extends Logistic {
+    public Transport createTransport() {
+        return new Truck();
+    }
+}
+
+class SeaLogistic extends Logistic {
+    public Transport createTransport() {
+        return new Ship();
+    }
+}
+
+class AirLogistic extends Logistic {
+    public Transport createTransport() {
+        return new Plane();
+    }
+}
