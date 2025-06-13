@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Calc calc = Calc.getInstance();
+        calc.Calc1(4,76);
+        Calc calc1 = Calc.getInstance();
+        calc1.Calc1(6,8);
+        if(calc.hashCode() == calc1.hashCode()){
+            System.out.println("OK");
+        }
+        else{
+            System.out.println("Error");
+        }
+    }
+}
+class Calc{
+    private static Calc calc = new Calc();
+    private Calc(){
+
+    }
+    public static Calc getInstance(){
+        return calc;
+    }
+    public void Calc1(double x, double y){
+        if(y == 0){
+            System.out.println("Деление на ноль!");
+        }
+        else{
+            System.out.println(2*x+3/y);
+        }
+    }
+}
