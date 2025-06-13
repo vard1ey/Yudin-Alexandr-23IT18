@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Выберите действие:\n save \n upload");
+        String s = scan.nextLine();
+        if (s.equals("save")){
+            try(ObjectOutputStream obo = new ObjectOutputStream(new FileOutputStream("file.txt"))){
+                System.out.print("Введите число х: ");
+                double x = scan.nextDouble();
+                Calc c = new Calc(x);
+                c.Caluc(x);
+                obo.writeObject(c);
+                System.out.println("Файл сохранён");
+            }
+            catch (Exception ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        else if (s.equals("upload")){
+            try(ObjectInputStream obi = new ObjectInputStream(new FileInputStream("file.txt"))){
+                Calc c = (Calc) obi.readObject();
+                System.out.print("x = " + c.a + " y = " + c.b);
+            }
+            catch (ClassNotFoundException ex){
+                throw new RuntimeException(ex);
+            }
+            catch (Exception e){
+                e.printStackTrace(System.out);
+            }
+        }
+    }
+}
+class Calc implements Serializable{
+    double a;
+    double b;
+    Calc(double a){
+        this.a = a;
+        Caluc(a);
+    }
+    void Caluc(double a){
+       this.b = this.a - Math.sin(this.a);
+    }
+}
