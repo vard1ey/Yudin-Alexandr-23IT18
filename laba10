@@ -1,0 +1,77 @@
+
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}
+class Animal{
+    String food;
+    String location;
+    Animal(String food, String location){
+        this.food=food;
+        this.location=location;
+    }
+    public void makeNoise(){
+        System.out.println("Животное - звук");
+    }
+    public void eat(){
+        System.out.printf("Животное ест %s", this.food);
+    }
+    public void sleep(){
+        System.out.println("Животное спит");
+    }
+}
+
+class Dog extends Animal{
+    String Poroda;
+    public Dog(String food,String location){
+        super(food,location);
+    }
+
+    @Override
+    public void makeNoise() {
+        System.out.println("Собака - лает");
+    }
+    @Override
+    public void eat() {
+        System.out.printf("Собака ест %s", this.food);
+    }
+}
+
+class Horse extends Animal{
+    String Stamina;
+    public Horse(String food,String location){
+        super(food,location);
+    }
+
+    @Override
+    public void makeNoise() {
+        System.out.println("Лошадь - ржёт");
+    }
+    @Override
+    public void eat() {
+        System.out.printf("Лошадь ест %s", this.food);
+    }
+}
+
+class Cat extends Animal{
+    int age;
+    public Cat(String food,String location){
+        super(food,location);
+    }
+
+    @Override
+    public void makeNoise() {
+        System.out.println("Кот - мяукает");
+    }
+    @Override
+    public void eat() {
+        System.out.printf("Кот ест %s", this.food);
+    }
+}
+
+class Veterinar{
+    void treatAnimal(Animal animal){
+        System.out.println(animal.food + " " + animal.location);
+    }
+}
