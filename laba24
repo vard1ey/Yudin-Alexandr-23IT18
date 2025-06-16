@@ -1,16 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<title>Laba_24</title>
+    <title>Laba_24</title>
 </head>
 <body>
 Введите значения
-<form action = "index.jsp" method="post">
-<label>Значение n:</label><input type="text" name="n">
-<label>Значение x:</label><input type="text" name="x">
-
-<input type="submit" value="send">
-<input type="reset" value="reset">
+<form action="index.jsp" method="post">
+    <label>Значение n:</label><input type="text" name="n">
+    <label>Значение x:</label><input type="text" name="x">
+    <input type="submit" value="send">
+    <input type="reset" value="reset">
 </form>
+<%
+    String nStr = request.getParameter("n");
+    String xStr = request.getParameter("x");
+    double sum = 0;
+    if (nStr != null && xStr != null && !nStr.isEmpty() && !xStr.isEmpty()) {
+        try {
+            int n = Integer.parseInt(nStr);
+            double x = Double.parseDouble(xStr);
+            double fact = 1;
+            for (int i = 1; i <= n; i++) {
+                fact *= i;
+                double ans = Math.pow(-1, i) * Math.pow(x, i) / fact;
+                sum += ans;
+            }
+        } catch (NumberFormatException e) {
+            System.out.print("Ошибка");
+        }
+    }
+%>
+<b>Ответ: <%= sum %></b>
 </body>
 </html>
